@@ -1,0 +1,62 @@
+#logo {
+  font-family: 'Trispace', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.links {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+  color: #edddd4 !important;
+  text-decoration: none !important;
+}
+
+a {
+  color: #edddd4 !important;
+  text-decoration: none !important;
+}
+
+nav {
+  border-bottom: thin solid #edddd4;
+}
+
+#subtitle {
+  font-size: 1rem;
+  color: white;
+  font-style: italic;
+}
+
+#fashion:hover {
+  color: #ce5374 !important;
+  font-weight: bold;
+}
+
+#home:hover {
+  color: #e2711d !important;
+  font-weight: bold;
+}
+
+#active:hover {
+  color: #72ddf7 !important;
+  font-weight: bold;
+}
+
+#new:hover {
+  color: #f9dc5c !important;
+  font-weight: bold;
+}
+
+#food:hover {
+  color: #329f5b !important;
+  font-weight: bold;
+}
+
+#beauty:hover {
+  color: #c694f0 !important;
+  font-weight: bold;
+}

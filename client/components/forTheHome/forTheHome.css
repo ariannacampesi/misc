@@ -1,0 +1,17 @@
+img.product {
+  height: 20rem;
+}
+
+.single-product-container {
+  background-color: white;
+  width: 20rem;
+  margin: 1rem;
+  text-align: center;
+  font-family: 'Trispace', sans-serif;
+}
+
+.all-products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
