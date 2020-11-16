@@ -33,3 +33,14 @@ router.get('/:categoryName', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/singleProduct/:productId', async (req, res, next) => {
+  try {
+    const {productId} = req.params
+    const foundProduct = await Product.findByPk(productId)
+    if (!foundProduct) console.error('Product not found.')
+    res.json(foundProduct)
+  } catch (err) {
+    next(err)
+  }
+})

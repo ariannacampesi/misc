@@ -1,0 +1,25 @@
+.single-view-img {
+  height: 20rem;
+}
+.single-view-container {
+  background-color: white;
+  color: black;
+  display: flex;
+  font-family: 'Trispace', sans-serif;
+  display: flex;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  margin-top: 2rem;
+}
+
+.name-and-img {
+  margin-left: 10rem;
+  text-align: center;
+  font-size: 1rem;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  justify-content: center;
+}

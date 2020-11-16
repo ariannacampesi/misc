@@ -198,9 +198,9 @@ async function seed() {
       price: 98
     }),
     Product.create({
-      name: 'Modern Waterbottle',
+      name: 'Insulated Bottle',
       imgUrl:
-        'https://images.hermanmiller.group/m/e0fc28964a660717/W-HAY_2515061_100129805_blue_f.png?blend-mode=darken&blend=f8f8f8&trim-color=ffffff&trim=color&bg=f8f8f8&auto=format&w=1200&q=68&h=1000',
+        'https://cdn.shopify.com/s/files/1/0146/0862/9808/products/20932_1000x.jpg?v=1550557368',
       categoryId: 4,
       quantity: 5,
       specs: [{fabrication: 'stainless steel', dimensions: '8"H'}],
@@ -214,6 +214,33 @@ async function seed() {
       quantity: 20,
       specs: [{}],
       price: 18
+    }),
+    Product.create({
+      name: 'Bracelet Stack',
+      imgUrl:
+        'https://cdn.shopify.com/s/files/1/0998/6780/products/GoldRainbow-MiniChicklet_SetOf5_1000x1000.jpg?v=1571707836',
+      categoryId: 2,
+      specs: [{}],
+      quantity: 15,
+      price: 58
+    }),
+    Product.create({
+      name: 'Hot Chocolate Sticks (3)',
+      imgUrl:
+        'https://www.ticketchocolate.com/wp-content/uploads/2015/10/TC_Variety_3Pack-008_2289x2289-450x450.jpg',
+      categoryId: 3,
+      specs: [{}],
+      quantity: 15,
+      price: 18
+    }),
+    Product.create({
+      name: 'Smash Cupcaked Surprise',
+      imgUrl:
+        'https://cdn.shopify.com/s/files/1/0150/8992/6198/products/11150-PRODUCT_04-500_500-1515792032915_836x.png?v=1565184116',
+      categoryId: 3,
+      specs: [{}],
+      quantity: 15,
+      price: 48
     })
   ])
   console.log(`seeded ${users.length} users`)

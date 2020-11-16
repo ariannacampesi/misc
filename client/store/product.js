@@ -4,6 +4,7 @@ import history from '../history'
 //ACTION TYPES
 const GET_PRODUCTS = 'GET_PRODUCTS'
 const GET_PRODUCTS_IN_CATEGORY = 'GET_PRODUCTS_IN_CATEGORY'
+const GET_PRODUCT = 'GET_PRODUCT'
 
 //ACTION CREATORS
 const getProducts = products => {
@@ -17,6 +18,13 @@ const getProductsInCategory = products => {
   return {
     type: 'GET_PRODUCTS_IN_CATEGORY',
     products
+  }
+}
+
+const getProduct = product => {
+  return {
+    type: 'GET_PRODUCT',
+    product
   }
 }
 
@@ -39,7 +47,20 @@ export const fetchProductsInCategoryFromServer = categoryName => async dispatch 
   }
 }
 
-export default function(state = {products: [], isLoading: true}, action) {
+export const fetchProductFromServer = productId => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/products/singleProduct/${productId}`)
+    dispatch(getProduct(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+//REDUCER
+export default function(
+  state = {products: [], product: {}, isLoading: true},
+  action
+) {
   switch (action.type) {
     case GET_PRODUCTS:
       return {
@@ -52,6 +73,12 @@ export default function(state = {products: [], isLoading: true}, action) {
         ...state,
         isLoading: false,
         products: action.products
+      }
+    case GET_PRODUCT:
+      return {
+        ...state,
+        isLoading: false,
+        product: action.product
       }
     default:
       return state

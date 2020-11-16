@@ -7,6 +7,9 @@
 .links {
   text-align: center;
   font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 nav a {
@@ -59,4 +62,8 @@ nav {
 #beauty:hover {
   color: #c694f0 !important;
   font-weight: bold;
+}
+
+#bag {
+  height: 5rem;
 }

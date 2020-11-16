@@ -15,3 +15,7 @@ img.product {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.product-title {
+  color: black !important;
+}

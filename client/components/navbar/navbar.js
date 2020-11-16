@@ -4,12 +4,12 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../../store'
 import './navbar.css'
-
+import bag from '../../images/shopping-bag.png'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <div id="logo">
       <a href="/">miscellaneous</a>
-      <div id="subtitle">*a curated collection*</div>
+      <div id="subtitle">*a curated collection of random goods*</div>
     </div>
     <nav>
       {isLoggedIn ? (
@@ -40,6 +40,12 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           </Link>
           <Link to="/beauty" id="beauty">
             beauty
+          </Link>
+          <Link to="/active" id="active">
+            active
+          </Link>
+          <Link to="/bag">
+            <img id="bag" src={bag} />
           </Link>
         </div>
       )}
