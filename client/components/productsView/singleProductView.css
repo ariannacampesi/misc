@@ -3,23 +3,42 @@
 }
 .single-view-container {
   background-color: white;
-  color: black;
+  color: black !important;
   display: flex;
   font-family: 'Trispace', sans-serif;
   display: flex;
   margin-left: 10rem;
   margin-right: 10rem;
   margin-top: 2rem;
+  width: 75%;
 }
 
+#app > div > div.all-products > a {
+  color: black !important;
+}
 .name-and-img {
   margin-left: 10rem;
   text-align: center;
   font-size: 1rem;
+  margin: 2rem;
 }
 .details {
   display: flex;
   flex-direction: column;
   margin-left: 3rem;
   justify-content: center;
+  margin-right: 3rem;
+}
+
+#add-to-bag {
+  width: 7rem;
+}
+
+#message {
+  font-style: italic;
+  display: flex;
+  text-align: center;
+  align-self: center;
+  font-size: 1rem;
+  margin-right: 2rem;
 }

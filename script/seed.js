@@ -13,11 +13,11 @@ async function seed() {
   ])
 
   const categories = await Promise.all([
-    Category.create({name: 'home'}),
-    Category.create({name: 'fashion'}),
-    Category.create({name: 'food'}),
-    Category.create({name: 'active'}),
-    Category.create({name: 'beauty'})
+    Category.create({id: 1, name: 'home'}),
+    // Category.create({name: 'food'}),
+    Category.create({id: 2, name: 'fashion'}),
+    Category.create({id: 4, name: 'active'}),
+    Category.create({id: 3, name: 'beauty'})
   ])
 
   const products = await Promise.all([
@@ -39,7 +39,7 @@ async function seed() {
     Product.create({
       name: 'Ankle/Wrist Weights',
       imgUrl:
-        'https://cdn.shopify.com/s/files/1/0007/8151/6860/products/BALA_1LB_DEEP_BLUE_HERO_aef49cd8-45c2-4182-a122-d8a6b6baa874_1024x.png?v=1605259489',
+        'https://cdn.shopify.com/s/files/1/0007/8151/6860/products/BALA_1LB_BANANA_HERO_99225ad3-f73d-4af6-9765-c5bcdc3b8126_1024x.png?v=1605259489',
       quantity: 10,
       specs: [{totalWeight: '2lbs'}],
       price: 48,
@@ -189,13 +189,13 @@ async function seed() {
       specs: [{fabrication: 'leather', dimensions: '6.75 x 6.75 x 4'}]
     }),
     Product.create({
-      name: 'Ribbed Legging',
+      name: 'Metallic Legging',
       imgUrl:
-        'https://images.bloomingdalesassets.com/is/image/BLM/products/6/optimized/11071506_fpx.tif?op_sharpen=1&wid=700&fit=fit,1&$filtersm$&fmt=webp',
+        'https://cdn.shopify.com/s/files/1/0364/9028/1004/products/2_16e4c666-d624-47ce-9680-af2caaa04006_1600x.jpg?v=1605200610',
       categoryId: 4,
       quantity: 10,
       specs: [{fabrication: 'nylon/spandex'}],
-      price: 98
+      price: 128
     }),
     Product.create({
       name: 'Insulated Bottle',
@@ -210,7 +210,7 @@ async function seed() {
       name: 'Mint Lip Balm',
       imgUrl:
         'https://cdn.shopify.com/s/files/1/0283/2308/6410/products/Lanolips101OintmentMinty-squeezed_shadow_1_3869f5de-b363-4613-95c8-4f1cd2a92d50_1080x.jpg?v=1587002965',
-      categoryId: 5,
+      categoryId: 3,
       quantity: 20,
       specs: [{}],
       price: 18
@@ -224,23 +224,14 @@ async function seed() {
       quantity: 15,
       price: 58
     }),
+
     Product.create({
-      name: 'Hot Chocolate Sticks (3)',
+      name: 'Sneaker with Metallic Detail',
       imgUrl:
-        'https://www.ticketchocolate.com/wp-content/uploads/2015/10/TC_Variety_3Pack-008_2289x2289-450x450.jpg',
-      categoryId: 3,
-      specs: [{}],
-      quantity: 15,
-      price: 18
-    }),
-    Product.create({
-      name: 'Smash Cupcaked Surprise',
-      imgUrl:
-        'https://cdn.shopify.com/s/files/1/0150/8992/6198/products/11150-PRODUCT_04-500_500-1515792032915_836x.png?v=1565184116',
-      categoryId: 3,
-      specs: [{}],
-      quantity: 15,
-      price: 48
+        'https://cdn.shopify.com/s/files/1/0049/9112/products/6dd9b0213404975cc920061124bbd0ba_1200x.jpg?v=1591797596',
+      categoryId: 4,
+      quantity: 10,
+      price: 178
     })
   ])
   console.log(`seeded ${users.length} users`)

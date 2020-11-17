@@ -12,6 +12,7 @@ import {
   Food,
   Active,
   Beauty,
+  ForTheHome,
   ProductsView,
   SingleProductView
 } from './components'
@@ -32,9 +33,9 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
-        {/* <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} /> */}
-        <Route path="/home" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/home" component={ForTheHome} />
         <Route path="/fashion" component={Fashion} />
         <Route path="/food" component={Food} />
         <Route path="/active" component={Active} />

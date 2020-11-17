@@ -1,8 +1,8 @@
 import React from 'react'
 import ProductsView from './productsView'
 
-const Home = props => {
+const ForTheHome = props => {
   return <ProductsView props={props} />
 }
 
-export default Home
+export default ForTheHome

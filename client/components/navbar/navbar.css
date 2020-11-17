@@ -2,6 +2,9 @@
   font-family: 'Trispace', sans-serif;
   font-size: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .links {
@@ -17,6 +20,7 @@ nav a {
   margin: 1em;
   color: #edddd4 !important;
   text-decoration: none !important;
+  font-family: 'Lato', sans-serif;
 }
 
 a {
@@ -24,9 +28,13 @@ a {
   text-decoration: none !important;
 }
 
-nav {
-  border-bottom: thin solid #edddd4;
+a:hover {
+  font-weight: bold;
 }
+
+/* nav {
+  border-bottom: thin solid #edddd4;
+} */
 
 #subtitle {
   font-size: 1rem;
@@ -34,36 +42,45 @@ nav {
   font-style: italic;
 }
 
-#fashion:hover {
-  color: #ce5374 !important;
-  font-weight: bold;
-}
-
-#home:hover {
-  color: #e2711d !important;
-  font-weight: bold;
-}
-
-#active:hover {
-  color: #72ddf7 !important;
-  font-weight: bold;
-}
-
-#new:hover {
-  color: #f9dc5c !important;
-  font-weight: bold;
-}
-
-#food:hover {
-  color: #329f5b !important;
-  font-weight: bold;
-}
-
-#beauty:hover {
-  color: #c694f0 !important;
-  font-weight: bold;
-}
-
 #bag {
   height: 5rem;
+  margin-left: 1rem;
+}
+
+#shopping-bag-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white !important;
+}
+
+.account-details {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+  justify-content: flex-end;
+  height: 2.5rem;
+  color: white !important;
+}
+
+#navbar {
+  border-bottom: thin solid #edddd4;
+  border-bottom-width: 0.25rem;
+}
+
+#app > div > div:nth-child(1) > div.account-details > div {
+  margin-right: 2rem;
+  color: white !important;
+}
+
+#app > div > div:nth-child(1) > div.account-details > a:nth-child(2) {
+  color: white !important;
 }

@@ -1,5 +1,14 @@
 img.product {
   height: 20rem;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+img.product:hover {
+  cursor: default;
+  transform: rotate(10deg);
+  transition: all 0.3s ease-in-out 0s;
+  border: thin solid black;
+  background: white;
 }
 
 .single-product-container {
@@ -10,6 +19,12 @@ img.product {
   font-family: 'Trispace', sans-serif;
 }
 
+/* .single-product-container:hover {
+  cursor: default;
+  transform: rotate(10deg);
+  transition: all 0.3s ease-in-out 0s;
+  border: thin solid black;
+} */
 .all-products {
   display: flex;
   flex-direction: row;

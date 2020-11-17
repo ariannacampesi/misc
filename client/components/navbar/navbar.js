@@ -5,51 +5,65 @@ import {Link} from 'react-router-dom'
 import {logout} from '../../store'
 import './navbar.css'
 import bag from '../../images/shopping-bag.png'
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, user}) => (
   <div>
-    <div id="logo">
-      <a href="/">miscellaneous</a>
-      <div id="subtitle">*a curated collection of random goods*</div>
-    </div>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div className="links">
-          {/* The navbar will show these links before you log in */}
-          {/* <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link> */}
-          <Link to="/gifts" id="new">
-            new
-          </Link>
-          {/* <Link to="/gifts">gifts</Link> */}
-          <Link to="/home" id="home">
-            home
-          </Link>
-          <Link to="/fashion" id="fashion">
-            fashion
-          </Link>
-          <Link to="/food" id="food">
-            food
-          </Link>
-          <Link to="/beauty" id="beauty">
-            beauty
-          </Link>
-          <Link to="/active" id="active">
-            active
-          </Link>
-          <Link to="/bag">
+    {!isLoggedIn ? (
+      <div className="account-details">
+        <Link to="/login">login</Link>
+        <Link to="/signup">signup</Link>
+        <Link to="/bag">
+          <div id="shopping-bag-icon">
             <img id="bag" src={bag} />
-          </Link>
+            <div id="quantity">({1})</div>
+          </div>
+        </Link>
+      </div>
+    ) : (
+      <div className="account-details">
+        <div>welcome back, {user.email}!</div>
+        <a href="#" onClick={handleClick}>
+          logout
+        </a>
+        <Link to="/bag">
+          <div id="shopping-bag-icon">
+            <img id="bag" src={bag} />
+            <div id="quantity">({1})</div>
+          </div>
+        </Link>
+      </div>
+    )}
+    <div id="navbar">
+      <div id="logo-and-links">
+        <div id="logo">
+          <a href="/">miscellaneous</a>
+          <div id="subtitle">*a curated collection of random goods*</div>
         </div>
-      )}
-    </nav>
+        <nav>
+          <div className="links">
+            {/* The navbar will show these links after you log in */}
+            <Link to="/gifts" id="new">
+              new
+            </Link>
+            {/* <Link to="/gifts">gifts</Link> */}
+            <Link to="/home" id="home">
+              home
+            </Link>
+            <Link to="/fashion" id="fashion">
+              fashion
+            </Link>
+            {/* <Link to="/food" id="food">
+            food
+          </Link> */}
+            <Link to="/beauty" id="beauty">
+              beauty
+            </Link>
+            <Link to="/active" id="active">
+              active
+            </Link>
+          </div>
+        </nav>
+      </div>
+    </div>
   </div>
 )
 
@@ -58,7 +72,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 
