@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {fetchProductFromServer} from '../../store/product'
+import {addToOrderQuantityLocally} from '../../store/orderProduct'
 import {connect} from 'react-redux'
 import {me} from '../../store/user'
 import './singleProductView.css'
@@ -10,7 +11,8 @@ class SingleProductView extends Component {
     super()
     this.state = {
       quantity: 1,
-      message: ''
+      message: '',
+      totalQuantity: 0
     }
     this.handleClickQuantity = this.handleClickQuantity.bind(this)
     this.handleAddToCart = this.handleAddToCart.bind(this)
@@ -39,45 +41,51 @@ class SingleProductView extends Component {
     }
   }
 
-  handleAddToCart() {
-    // see if they are logged in
-    // if they are logged in, add everything to database
-    // if they are a guest, add to localStorage
+  handleAddToCart(event) {
+    event.preventDefault()
+
     if (this.props.user.length === undefined) {
       console.log('added to bag:', this.state.quantity)
+
       let item = {
         name: this.props.product.name,
         id: this.props.product.id,
         quantity: this.state.quantity
       }
+
       let lineItem = localStorage.getItem(`${item.id}`)
         ? localStorage.getItem(`${item.id}`)
         : 0
-      console.log('lineItem', lineItem)
+
       localStorage.setItem(`${item.id}`, +item.quantity + +lineItem)
-      console.log('localStorage', localStorage)
+
+      this.props.addToOrderQuantity(this.state.quantity)
+
       this.setState({
         message: `${this.state.quantity} units sucessfully added to cart!`
       })
-      this.setState({quantity: 1})
+      this.setState({
+        quantity: 1
+      })
     } else {
       console.log('logged in')
     }
   }
 
   render() {
+    console.log('this.props in single', this.props)
     return this.props.isLoading === true ? (
-      <div>Loading.../</div>
+      <div>Loading...</div>
     ) : (
       <div className="single-view-container">
         <div className="name-and-img">
           <div>{this.props.product.name}</div>
           <img className="single-view-img" src={this.props.product.imgUrl} />
         </div>
-        <div className="details">
+        <form className="details" onSubmit={this.handleAddToCart}>
           <div>${this.props.product.price}</div>
           <div>specs here</div>
-          <button id="add-to-bag" type="button" onClick={this.handleAddToCart}>
+          <button id="add-to-bag" type="submit">
             add to bag
           </button>
           <div>
@@ -89,9 +97,9 @@ class SingleProductView extends Component {
               -
             </button>
           </div>
-        </div>
+        </form>
         {this.state.message === '' ? (
-          <div>{}</div>
+          <div />
         ) : (
           <div id="message">{this.state.message}</div>
         )}
@@ -105,14 +113,17 @@ const mapState = state => {
   return {
     product: state.product.product,
     isLoading: state.product.isLoading,
-    user: state.user
+    user: state.user,
+    quantity: state.orderProduct.quantity
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     getProduct: productId => dispatch(fetchProductFromServer(productId)),
-    getUser: () => dispatch(me())
+    getUser: () => dispatch(me()),
+    addToOrderQuantity: quantity =>
+      dispatch(addToOrderQuantityLocally(quantity))
   }
 }
 
