@@ -8,5 +8,9 @@ export const getStorage = () => {
 
 export const getQuantity = () => {
   const values = Object.values(localStorage)
-  return values.reduce((accum, curr) => +accum + +curr)
+  const quantities = values
+    .map(itemInBag => JSON.parse(itemInBag))
+    .map(item => item.quantity)
+  console.log('quantites', quantities)
+  return quantities.reduce((accum, curr) => +accum + +curr)
 }

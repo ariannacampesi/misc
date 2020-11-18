@@ -9,7 +9,8 @@ import Quantity from '../bag/quantity'
 import {getQuantity} from '../../functions/functions'
 
 const Navbar = ({handleClick, isLoggedIn, user}) => {
-  const [quantity, setQuantity] = useState(0)
+  const [active, setActive] = useState('')
+
   return (
     <div>
       {!isLoggedIn ? (
@@ -46,23 +47,43 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
           <nav>
             <div className="links">
               {/* The navbar will show these links after you log in */}
-              <Link to="/gifts" id="new">
+              {/* <Link to="/gifts" id="new">
                 new
-              </Link>
+              </Link> */}
               {/* <Link to="/gifts">gifts</Link> */}
-              <Link to="/home" id="home">
-                home
+              <Link
+                onClick={() => setActive('home-active')}
+                to="/home"
+                id="home"
+                className={(active === 'home-active').toString()}
+              >
+                home+gifts
               </Link>
-              <Link to="/fashion" id="fashion">
+              <Link
+                onClick={() => setActive('fashion-active')}
+                to="/fashion"
+                id="fashion"
+                className={(active === 'fashion-active').toString()}
+              >
                 fashion
               </Link>
               {/* <Link to="/food" id="food">
             food
           </Link> */}
-              <Link to="/beauty" id="beauty">
-                beauty
+              <Link
+                to="/beauty"
+                id="beauty"
+                onClick={() => setActive('beauty-active')}
+                className={(active === 'beauty-active').toString()}
+              >
+                bath+beauty
               </Link>
-              <Link to="/active" id="active">
+              <Link
+                to="/active"
+                id="active"
+                onClick={() => setActive('active-active')}
+                className={(active === 'active-active').toString()}
+              >
                 active
               </Link>
             </div>

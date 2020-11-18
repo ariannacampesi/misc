@@ -8,7 +8,7 @@ class Quantity extends Component {
     if (localStorage.length === 0) return <div id="quantity">(0)</div>
     if (this.props.quantity === 0)
       return <div id="quantity">{getQuantity()}</div>
-    return <div id="quantity">{this.props.quantity}</div>
+    return <div id="quantity">({this.props.quantity})</div>
 
     // return localStorage.length === 0 ? (
     //   <div id="quantity">{0}</div>

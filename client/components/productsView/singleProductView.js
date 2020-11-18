@@ -50,19 +50,25 @@ class SingleProductView extends Component {
       let item = {
         name: this.props.product.name,
         id: this.props.product.id,
-        quantity: this.state.quantity
+        quantity: this.state.quantity,
+        price: this.props.product.price,
+        imgUrl: this.props.product.imgUrl
       }
 
       let lineItem = localStorage.getItem(`${item.id}`)
-        ? localStorage.getItem(`${item.id}`)
+        ? JSON.parse(localStorage.getItem(`${item.id}`)).quantity
         : 0
 
-      localStorage.setItem(`${item.id}`, +item.quantity + +lineItem)
+      console.log('lineItem', lineItem)
+
+      item.quantity += +lineItem
+      // localStorage.setItem(`${item.id}`, +item.quantity + +lineItem)
+      localStorage.setItem(`${item.id}`, JSON.stringify(item))
 
       this.props.addToOrderQuantity(this.state.quantity)
 
       this.setState({
-        message: `${this.state.quantity} units sucessfully added to cart!`
+        message: `${this.state.quantity} unit(s) sucessfully added to cart!`
       })
       this.setState({
         quantity: 1

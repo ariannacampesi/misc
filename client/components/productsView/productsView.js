@@ -6,12 +6,19 @@ import {SingleProductView} from '../index'
 import {Link} from 'react-router-dom'
 
 class ProductsView extends Component {
+  constructor() {
+    super()
+    this.state = {
+      category: ''
+    }
+  }
   componentDidMount() {
     console.log('this.props', this.props)
     let category = this.props.props.match.path.split('')
     category.shift()
     category = category.join('')
     console.log('category', category)
+    this.setState({category: category})
     this.props.getProducts(category)
   }
 
@@ -20,21 +27,24 @@ class ProductsView extends Component {
       return <div>Loading...</div>
     } else {
       return (
-        <div className="all-products">
-          {this.props.products.map(product => (
-            <Link key={product.name} to={`/singleProduct/${product.id}`}>
-              <div
-                className="single-product-container"
-                key={product.id}
-                onClick={this.handleClick}
-                product={product.id}
-              >
-                <img className="product" src={product.imgUrl} />
-                <div>{product.name}</div>
-                <div>{product.price}</div>
-              </div>
-            </Link>
-          ))}
+        <div>
+          {/* <h1 id="section-header">{this.state.category}</h1> */}
+          <div className="all-products">
+            {this.props.products.map(product => (
+              <Link key={product.name} to={`/singleProduct/${product.id}`}>
+                <div
+                  className="single-product-container"
+                  key={product.id}
+                  onClick={this.handleClick}
+                  product={product.id}
+                >
+                  <img className="product" src={product.imgUrl} />
+                  <div className="product-name">{product.name}</div>
+                  <div className="price">{product.price}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       )
     }

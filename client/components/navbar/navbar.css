@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: white !important;
 }
 
 .links {
@@ -16,15 +17,21 @@
 }
 
 nav a {
-  display: inline-block;
+  /* display: inline-block; */
   margin: 1em;
-  color: #edddd4 !important;
+  color: #f0eae7 !important;
   text-decoration: none !important;
   font-family: 'Lato', sans-serif;
+  height: 0.5rem;
+  padding: 1rem;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
-  color: #edddd4 !important;
+  /* color: #edddd4 !important; */
+  color: #f0eae7 !important;
   text-decoration: none !important;
 }
 
@@ -44,7 +51,6 @@ a:hover {
 
 #bag {
   height: 5rem;
-  margin-left: 1rem;
 }
 
 #shopping-bag-icon {
@@ -69,11 +75,17 @@ a:hover {
   justify-content: flex-end;
   height: 2.5rem;
   color: white !important;
+  /* background-color: white;
+  width: 101vw;
+  margin-left: -1rem; */
 }
 
 #navbar {
-  border-bottom: thin solid #edddd4;
-  border-bottom-width: 0.25rem;
+  /* border-bottom: thin solid #edddd4;
+  border-bottom-width: 0.25rem; */
+  /* background-color: white;
+  width: 101vw;
+  margin-left: -1rem; */
 }
 
 #app > div > div:nth-child(1) > div.account-details > div {
@@ -83,4 +95,15 @@ a:hover {
 
 #app > div > div:nth-child(1) > div.account-details > a:nth-child(2) {
   color: white !important;
+}
+
+#app > div > div:nth-child(1) > div.account-details > a:nth-child(1) {
+  color: white !important;
+  margin-right: 1rem;
+}
+
+.true {
+  background-color: white !important;
+  color: black !important;
+  border: thin solid black;
 }
