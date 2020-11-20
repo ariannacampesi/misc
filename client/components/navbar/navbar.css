@@ -4,8 +4,10 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  color: white !important;
+}
+
+#logo a {
+  color: #c7cea1 !important;
 }
 
 .links {
@@ -19,7 +21,7 @@
 nav a {
   /* display: inline-block; */
   margin: 1em;
-  color: #f0eae7 !important;
+  color: white !important;
   text-decoration: none !important;
   font-family: 'Lato', sans-serif;
   height: 0.5rem;

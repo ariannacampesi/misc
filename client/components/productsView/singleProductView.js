@@ -46,13 +46,16 @@ class SingleProductView extends Component {
 
     if (this.props.user.length === undefined) {
       console.log('added to bag:', this.state.quantity)
-
+      let available = []
+      for (let i = 1; i <= this.props.product.quantity; i++) available.push(i)
+      console.log('avail', available)
       let item = {
         name: this.props.product.name,
         id: this.props.product.id,
         quantity: this.state.quantity,
         price: this.props.product.price,
-        imgUrl: this.props.product.imgUrl
+        imgUrl: this.props.product.imgUrl,
+        available: available
       }
 
       let lineItem = localStorage.getItem(`${item.id}`)

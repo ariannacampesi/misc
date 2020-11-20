@@ -146,7 +146,7 @@ async function seed() {
     Product.create({
       name: 'Gray Sweatshirt',
       imgUrl:
-        'https://m.media-amazon.com/images/G/01/Shopbop/p/prod/products/agole/agole3039616534/agole3039616534_q6_2-0._UX357_QL90_.jpg',
+        'https://cdn.shopify.com/s/files/1/1067/4288/products/unnamed.jpg?v=1575931544',
       price: 78,
       specs: [{fabrication: '100% cotton'}],
       quantity: 15,

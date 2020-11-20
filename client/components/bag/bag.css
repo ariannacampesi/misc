@@ -1,8 +1,18 @@
 #entire-bag {
-  background: #f0eae7;
-  padding: 1rem;
-  margin-left: -1rem;
-  margin-right: -2rem;
+  background: #c7cea1;
+  border: thin solid black;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 2rem;
+  /* width: 75%; */
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-top: 1rem;
+  /* margin-left: -1rem;
+  margin-right: -2rem; */
 }
 #line-item-in-bag {
   display: flex;
@@ -14,9 +24,7 @@
   background-color: white;
   padding: 1rem;
   width: 20rem;
-  margin-left: 5rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin: 1rem;
   justify-content: space-between;
 }
 
@@ -26,10 +34,15 @@
 
 #line-img {
   height: 5rem;
-  width: 5rem;
 }
 
 #delete-button {
   display: flex;
   height: fit-content;
+}
+
+#delete-button:hover {
+  font-weight: bold;
+  background-color: #087e8b;
+  color: white;
 }
