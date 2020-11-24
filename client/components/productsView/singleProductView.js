@@ -46,9 +46,13 @@ class SingleProductView extends Component {
 
     if (this.props.user.length === undefined) {
       console.log('added to bag:', this.state.quantity)
+
+      //available units converted to an array to use in the select menu in bag component
       let available = []
       for (let i = 1; i <= this.props.product.quantity; i++) available.push(i)
       console.log('avail', available)
+
+      //item to be added to localStorage
       let item = {
         name: this.props.product.name,
         id: this.props.product.id,
@@ -58,18 +62,23 @@ class SingleProductView extends Component {
         available: available
       }
 
+      //access the quantity in bag, if any
       let lineItem = localStorage.getItem(`${item.id}`)
         ? JSON.parse(localStorage.getItem(`${item.id}`)).quantity
         : 0
 
       console.log('lineItem', lineItem)
 
+      //add the new quantity to the existing quantity
       item.quantity += +lineItem
-      // localStorage.setItem(`${item.id}`, +item.quantity + +lineItem)
+
+      //set the item in localStorage, passing the JSON object as a string
       localStorage.setItem(`${item.id}`, JSON.stringify(item))
 
+      //add the new quantity to the redux state, so component will update
       this.props.addToOrderQuantity(this.state.quantity)
 
+      //message to notify user of success and reset
       this.setState({
         message: `${this.state.quantity} unit(s) sucessfully added to cart!`
       })

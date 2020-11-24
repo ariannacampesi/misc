@@ -5,6 +5,7 @@ import {getQuantity} from '../functions/functions'
 //ACTION TYPES
 const GET_ORDER_PRODUCTS = 'GET_PRODUCTS'
 const ADD_TO_ORDER_QUANTITY = 'ADD_TO_ORDER_QUANTITY'
+const SET_ORDER_QUANTITY = 'SET_ORDER_QUANTITY'
 
 //ACTION CREATORS
 const getOrderProducts = products => {
@@ -21,6 +22,13 @@ const addToOrderQuantity = quantity => {
   }
 }
 
+const setOrderQuantity = quantityDiff => {
+  return {
+    type: SET_ORDER_QUANTITY,
+    quantityDiff
+  }
+}
+
 //THUNK CREATOR
 export const fetchOrderProductsFromServer = () => async dispatch => {
   try {
@@ -34,6 +42,14 @@ export const fetchOrderProductsFromServer = () => async dispatch => {
 export const addToOrderQuantityLocally = quantity => dispatch => {
   try {
     dispatch(addToOrderQuantity(quantity))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const setOrderQuantityLocally = quantityDiff => dispatch => {
+  try {
+    dispatch(setOrderQuantity(+quantityDiff))
   } catch (err) {
     console.error(err)
   }
@@ -59,6 +75,11 @@ export default function(
       return {
         ...state,
         quantity: state.quantity + +action.quantity
+      }
+    case SET_ORDER_QUANTITY:
+      return {
+        ...state,
+        quantity: state.quantity + action.quantityDiff
       }
     default:
       return state

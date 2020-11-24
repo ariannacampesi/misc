@@ -14,3 +14,5 @@ export const getQuantity = () => {
   console.log('quantites', quantities)
   return quantities.reduce((accum, curr) => +accum + +curr)
 }
+
+export const getTotal = () => {}

@@ -3,10 +3,12 @@ import {connect} from 'react-redux'
 import {me} from '../../store/user'
 const localStorage = window.localStorage
 import './bag.css'
+import Quantity from './quantity'
+import {setOrderQuantityLocally} from '../../store/orderProduct'
 
 class Bag extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       localStorage: []
     }
@@ -20,7 +22,10 @@ class Bag extends Component {
     console.log('this.getStorage()', this.getStorage())
     this.setState({
       localStorage: this.getStorage(),
-      updated: true
+      updated: true,
+      totalQuantity: this.getStorage()
+        .map(element => +element[Object.keys(element)].quantity)
+        .reduce((accum, curr) => accum + curr)
     })
   }
 
@@ -38,7 +43,13 @@ class Bag extends Component {
   }
 
   handleClick(event) {
+    const item = localStorage.getItem(event.target.value)
+    const {quantity} = JSON.parse(item)
+
     localStorage.removeItem(event.target.value)
+
+    this.props.setOrderQuantity(-quantity)
+
     this.setState({localStorage: this.getStorage()})
   }
 
@@ -48,20 +59,29 @@ class Bag extends Component {
 
     //access the value object and convert back to JSON obj
     let valueObj = JSON.parse(localStorage.getItem(name))
+    const originalQty = valueObj.quantity
 
     //set the quantity value to the new quantity
     valueObj.quantity = value
+
+    //find the difference between the original qty and the new qty
+    const diff = +value - originalQty
 
     //convert the entire JSON obj back to string
     valueObj = JSON.stringify(valueObj)
 
     //set the item in localStorage
     localStorage.setItem(name, valueObj)
-    this.setState({updated: !this.state.updated})
+    this.props.setOrderQuantity(diff)
+    this.setState({
+      updated: !this.state.updated,
+      localStorage: this.getStorage()
+    })
   }
 
   render() {
     console.log('this.state in render', this.state)
+    console.log('this.props in render', this.props.quantity)
     const storage = this.getStorage()
     console.log('storage', storage)
 
@@ -102,7 +122,10 @@ class Bag extends Component {
             </button>
           </div>
         ))}
-        <div>TOTAL ITEMS</div>
+        <div>
+          total units: <Quantity />
+        </div>
+        <div>total price: </div>
       </div>
     ) : (
       <div>logged in</div>
@@ -114,13 +137,15 @@ const mapState = state => {
   console.log('state in mapstate', state)
   return {
     isLoading: state.product.isLoading,
-    user: state.user
+    user: state.user,
+    quantity: state.orderProduct.quantity
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getUser: () => dispatch(me())
+    getUser: () => dispatch(me()),
+    setOrderQuantity: quantity => dispatch(setOrderQuantityLocally(quantity))
   }
 }
 
