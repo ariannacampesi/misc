@@ -1,11 +1,12 @@
 import axios from 'axios'
 import history from '../history'
-import {getQuantity} from '../functions/functions'
+import {getQuantity, getTotal} from '../functions/functions'
 
 //ACTION TYPES
 const GET_ORDER_PRODUCTS = 'GET_PRODUCTS'
 const ADD_TO_ORDER_QUANTITY = 'ADD_TO_ORDER_QUANTITY'
 const SET_ORDER_QUANTITY = 'SET_ORDER_QUANTITY'
+const GET_ORDER_TOTAL = 'GET_ORDER_TOTAL'
 
 //ACTION CREATORS
 const getOrderProducts = products => {
@@ -29,6 +30,12 @@ const setOrderQuantity = quantityDiff => {
   }
 }
 
+const getOrderTotal = total => {
+  return {
+    type: GET_ORDER_TOTAL,
+    total
+  }
+}
 //THUNK CREATOR
 export const fetchOrderProductsFromServer = () => async dispatch => {
   try {
@@ -55,12 +62,22 @@ export const setOrderQuantityLocally = quantityDiff => dispatch => {
   }
 }
 
+export const getOrderTotalLocally = () => dispatch => {
+  try {
+    const total = localStorage.length === 0 ? 0 : getTotal()
+    dispatch(getOrderTotal(total))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 //REDUCER
 export default function(
   state = {
     orderProducts: [],
-    quantity: localStorage.length === 0 ? 0 : getQuantity(),
-    isLoading: true
+    quantity: localStorage.length === 0 ? 0 : +getQuantity(),
+    isLoading: true,
+    total: 0
   },
   action
 ) {
@@ -77,9 +94,15 @@ export default function(
         quantity: state.quantity + +action.quantity
       }
     case SET_ORDER_QUANTITY:
+      console.log('action.quantityDiff', action.quantityDiff)
       return {
         ...state,
         quantity: state.quantity + action.quantityDiff
+      }
+    case GET_ORDER_TOTAL:
+      return {
+        ...state,
+        total: action.total
       }
     default:
       return state

@@ -4,7 +4,10 @@ import {me} from '../../store/user'
 const localStorage = window.localStorage
 import './bag.css'
 import Quantity from './quantity'
-import {setOrderQuantityLocally} from '../../store/orderProduct'
+import {
+  setOrderQuantityLocally,
+  getOrderTotalLocally
+} from '../../store/orderProduct'
 
 class Bag extends Component {
   constructor(props) {
@@ -19,6 +22,7 @@ class Bag extends Component {
 
   async componentDidMount() {
     await this.props.getUser()
+    this.props.getOrderTotal()
     console.log('this.getStorage()', this.getStorage())
     this.setState({
       localStorage: this.getStorage(),
@@ -49,6 +53,7 @@ class Bag extends Component {
     localStorage.removeItem(event.target.value)
 
     this.props.setOrderQuantity(-quantity)
+    this.props.getOrderTotal()
 
     this.setState({localStorage: this.getStorage()})
   }
@@ -66,13 +71,17 @@ class Bag extends Component {
 
     //find the difference between the original qty and the new qty
     const diff = +value - originalQty
-
+    console.log('diff', diff)
+    console.log('typeof diff', typeof diff)
     //convert the entire JSON obj back to string
     valueObj = JSON.stringify(valueObj)
 
     //set the item in localStorage
     localStorage.setItem(name, valueObj)
+
     this.props.setOrderQuantity(diff)
+    this.props.getOrderTotal()
+
     this.setState({
       updated: !this.state.updated,
       localStorage: this.getStorage()
@@ -87,45 +96,54 @@ class Bag extends Component {
 
     return this.props.user.id === undefined ? (
       <div id="entire-bag">
-        {storage.map((element, index) => (
-          <div key={index} id="line-item-in-bag">
-            <img id="line-img" src={element[Object.keys(element)].imgUrl} />
-            <div>
-              <div id="line-name">{element[Object.keys(element)].name}</div>
-              {/* <div>product id: {Object.keys(element)}</div> */}
+        <div id="all-items">
+          {storage.map((element, index) => (
+            <div key={index} id="line-item-in-bag">
+              <img id="line-img" src={element[Object.keys(element)].imgUrl} />
               <div>
-                quantity:{' '}
-                <select
-                  defaultValue={element[Object.keys(element)].quantity}
-                  onChange={this.handleQuantityChange}
-                  name={element[Object.keys(element)].id}
-                >
-                  {element[Object.keys(element)].available.map(num => (
-                    <option key={num}>{num}</option>
-                  ))}
-                </select>
+                <div id="line-name">{element[Object.keys(element)].name}</div>
+                {/* <div>product id: {Object.keys(element)}</div> */}
+                <div>
+                  quantity:{' '}
+                  <select
+                    defaultValue={element[Object.keys(element)].quantity}
+                    onChange={this.handleQuantityChange}
+                    name={element[Object.keys(element)].id}
+                  >
+                    {element[Object.keys(element)].available.map(num => (
+                      <option key={num}>{num}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>unit price: ${element[Object.keys(element)].price}</div>
+                <div>
+                  total price: $
+                  {element[Object.keys(element)].price *
+                    element[Object.keys(element)].quantity}
+                </div>
               </div>
-              <div>unit price: ${element[Object.keys(element)].price}</div>
-              <div>
-                total price: $
-                {element[Object.keys(element)].price *
-                  element[Object.keys(element)].quantity}
-              </div>
+              <button
+                type="button"
+                id="delete-button"
+                value={Object.keys(element)}
+                onClick={this.handleClick}
+              >
+                x
+              </button>
             </div>
-            <button
-              type="button"
-              id="delete-button"
-              value={Object.keys(element)}
-              onClick={this.handleClick}
-            >
-              x
-            </button>
-          </div>
-        ))}
-        <div>
-          total units: <Quantity />
+          ))}
         </div>
-        <div>total price: </div>
+        {this.props.quantity === 0 ? (
+          <div id="empty-container">
+            <div>Your bag is ☹️.</div>
+            <div>Make it 😁by adding some items!</div>
+          </div>
+        ) : (
+          <div id="total-container">
+            <div>total units: {this.props.quantity}</div>
+            <div>total price: ${this.props.total}</div>
+          </div>
+        )}
       </div>
     ) : (
       <div>logged in</div>
@@ -138,14 +156,16 @@ const mapState = state => {
   return {
     isLoading: state.product.isLoading,
     user: state.user,
-    quantity: state.orderProduct.quantity
+    quantity: state.orderProduct.quantity,
+    total: state.orderProduct.total
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     getUser: () => dispatch(me()),
-    setOrderQuantity: quantity => dispatch(setOrderQuantityLocally(quantity))
+    setOrderQuantity: quantity => dispatch(setOrderQuantityLocally(quantity)),
+    getOrderTotal: () => dispatch(getOrderTotalLocally())
   }
 }
 

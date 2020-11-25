@@ -15,4 +15,11 @@ export const getQuantity = () => {
   return quantities.reduce((accum, curr) => +accum + +curr)
 }
 
-export const getTotal = () => {}
+export const getTotal = () => {
+  const values = Object.values(localStorage)
+  const prices = values
+    .map(itemInBag => JSON.parse(itemInBag))
+    .map(item => item.quantity * item.price)
+    .reduce((accum, curr) => accum + curr)
+  return prices
+}

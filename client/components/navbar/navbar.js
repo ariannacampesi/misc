@@ -6,7 +6,6 @@ import {logout} from '../../store'
 import './navbar.css'
 import bag from '../../images/shopping-bag.png'
 import Quantity from '../bag/quantity'
-import {getQuantity} from '../../functions/functions'
 
 const Navbar = ({handleClick, isLoggedIn, user}) => {
   const [active, setActive] = useState('')
