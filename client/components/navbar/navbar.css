@@ -52,7 +52,7 @@ a:hover {
 }
 
 #bag {
-  height: 3rem;
+  height: 4rem;
 }
 
 #shopping-bag-icon {
@@ -76,7 +76,7 @@ a:hover {
   align-items: center;
   font-family: 'Lato', sans-serif;
   justify-content: flex-end;
-  height: 3rem;
+  height: 4rem;
   color: white !important;
   /* background-color: white;
   width: 101vw;

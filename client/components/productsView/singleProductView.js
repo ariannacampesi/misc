@@ -95,32 +95,38 @@ class SingleProductView extends Component {
     return this.props.isLoading === true ? (
       <div>Loading...</div>
     ) : (
-      <div className="single-view-container">
-        <div className="name-and-img">
-          <div>{this.props.product.name}</div>
-          <img className="single-view-img" src={this.props.product.imgUrl} />
-        </div>
-        <form className="details" onSubmit={this.handleAddToCart}>
-          <div>${this.props.product.price}</div>
-          <div>specs here</div>
-          <button id="add-to-bag" type="submit">
-            add to bag
-          </button>
-          <div>
-            <div>quantity: {this.state.quantity}</div>
-            <button type="button" onClick={this.handleClickQuantity} value="+">
-              +
-            </button>
-            <button type="button" onClick={this.handleClickQuantity} value="-">
-              -
-            </button>
+      <div className="single-view-entire-container">
+        <div className="single-view-container">
+          <div className="name-and-img">
+            <div>{this.props.product.name}</div>
+            <img className="single-view-img" src={this.props.product.imgUrl} />
           </div>
-        </form>
-        {this.state.message === '' ? (
-          <div />
-        ) : (
-          <div id="message">{this.state.message}</div>
-        )}
+          <form className="details" onSubmit={this.handleAddToCart}>
+            <div>${this.props.product.price}</div>
+            {/* <div>specs here</div> */}
+            <button id="add-to-bag" type="submit">
+              add to bag
+            </button>
+            <div>
+              <div>quantity: {this.state.quantity}</div>
+              <button
+                type="button"
+                onClick={this.handleClickQuantity}
+                value="+"
+              >
+                +
+              </button>
+              <button
+                type="button"
+                onClick={this.handleClickQuantity}
+                value="-"
+              >
+                -
+              </button>
+            </div>
+          </form>
+        </div>
+        <div id="message">{this.state.message}</div>
       </div>
     )
   }

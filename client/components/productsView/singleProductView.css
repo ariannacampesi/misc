@@ -1,17 +1,25 @@
 .single-view-img {
   height: 20rem;
 }
-.single-view-container {
+.single-view-entire-container {
   background-color: white;
   color: black !important;
   display: flex;
   font-family: 'Trispace', sans-serif;
   display: flex;
+  flex-direction: column;
   margin-left: 10rem;
   margin-right: 10rem;
   margin-top: 2rem;
   width: 75%;
   border: thin solid black;
+  justify-content: center;
+  /* height: 30rem; */
+}
+
+.single-view-container {
+  display: flex;
+  justify-content: center;
 }
 
 #app > div > div.all-products > a {
@@ -42,4 +50,5 @@
   align-self: center;
   font-size: 1rem;
   margin-right: 2rem;
+  height: 2rem;
 }
