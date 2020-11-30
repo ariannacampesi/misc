@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Category, Product} = require('../server/db/models')
+const {User, Category, Product, Promo} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -18,6 +18,12 @@ async function seed() {
     Category.create({id: 2, name: 'fashion'}),
     Category.create({id: 4, name: 'active'}),
     Category.create({id: 3, name: 'beauty'})
+  ])
+
+  const promos = await Promise.all([
+    Promo.create({code: 'FREESHIP', status: 'active', discount: 5.99}),
+    Promo.create({code: 'MERRYCHRISTMAS', status: 'active', discount: 0.2}),
+    Promo.create({code: 'FALL20', status: 'expired', discount: 0.2})
   ])
 
   const products = await Promise.all([
@@ -98,8 +104,7 @@ async function seed() {
     }),
     Product.create({
       name: 'Alpaca Throw',
-      imgUrl:
-        'https://cdn.shopify.com/s/files/1/0270/1082/6274/products/nixonthrow_or_db16a096-d05d-45d7-9575-8f605e5a3d5c_x1200.jpg?v=1604991435',
+      imgUrl: 'https://www.missoni.com/46/46619627aw_10_m.jpg',
       price: 368,
       specs: [{fabrication: '100% alpaca', size: '60" on all sides'}],
       categoryId: 1,
@@ -613,6 +618,7 @@ async function seed() {
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${categories.length} categories`)
   console.log(`seeded ${products.length} products`)
+  console.log(`seeded ${promos.length} promo codes successfully`)
   console.log(`seeded successfully`)
 }
 

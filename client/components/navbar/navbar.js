@@ -14,8 +14,8 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
     <div>
       {!isLoggedIn ? (
         <div className="account-details">
-          <Link to="/login">login</Link>
-          <Link to="/signup">signup</Link>
+          {/* <Link to="/login">login</Link>
+          <Link to="/signup">signup</Link> */}
           <Link to="/bag">
             <div id="shopping-bag-icon">
               <img id="bag" src={bag} />
