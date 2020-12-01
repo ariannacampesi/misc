@@ -21,22 +21,21 @@
 .prices div {
   background-color: white;
   padding: 1rem;
-  border: thin solid green;
+  border: thin solid rgb(52, 94, 52);
   font-family: 'Lato';
   margin: 1rem;
   width: 5.2rem;
   text-align: center;
-  color: green !important;
+  color: rgb(52, 94, 52) !important;
+  font-weight: bold;
 }
 
 .prices div:hover {
   font-weight: bold;
+  color: white !important;
+  background-color: rgb(52, 94, 52);
 }
 
-.prices a {
-  text-decoration: none !important;
-  color: green !important;
-}
 #tier-2,
 #tier-3 {
   justify-content: center;
@@ -46,6 +45,11 @@
 #shop-all {
   border: thin solid rgb(121, 81, 81);
   color: rgb(121, 81, 81) !important;
+}
+
+#shop-all:hover {
+  background-color: rgb(121, 81, 81);
+  color: white !important;
 }
 
 /* star */

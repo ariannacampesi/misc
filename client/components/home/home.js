@@ -13,12 +13,8 @@ const Home = () => {
         <div>under $25</div>
       </div>
       <div className="prices" id="tier-2">
-        <div>
-          <a>under $50</a>
-        </div>
-        <div>
-          <a>under $75</a>
-        </div>
+        <div>under $50</div>
+        <div>under $75</div>
       </div>
       <div className="prices" id="tier-3">
         <div>under $100</div>
