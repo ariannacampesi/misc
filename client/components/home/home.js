@@ -4,10 +4,14 @@ import './home.css'
 const Home = () => {
   return (
     <div id="homepage">
-      <div className="main">it's that time of year!</div>
-      <div className="main">shop gifts for every budget</div>
-      <div id="star">
-        <i className="star" />
+      <div id="main">
+        <div className="main">it's that time of year!</div>
+        <div className="main">shop gifts for every budget</div>
+      </div>
+      <div id="star-container">
+        <div id="star">
+          <i className="star__part" />
+        </div>
       </div>
       <div className="prices">
         <div>under $25</div>
