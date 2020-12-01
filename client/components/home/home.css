@@ -1,0 +1,93 @@
+#homepage {
+  background-color: white;
+  height: 100vh;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.main {
+  font-family: 'Trispace';
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  color: maroon;
+}
+
+.prices {
+  display: flex;
+  justify-content: space-around;
+}
+
+.prices div {
+  background-color: white;
+  padding: 1rem;
+  border: thin solid green;
+  font-family: 'Lato';
+  margin: 1rem;
+  width: 5.2rem;
+  text-align: center;
+  color: green !important;
+}
+
+.prices div:hover {
+  font-weight: bold;
+}
+
+.prices a {
+  text-decoration: none !important;
+  color: green !important;
+}
+#tier-2,
+#tier-3 {
+  justify-content: center;
+  margin: 1rem;
+}
+
+#shop-all {
+  border: thin solid rgb(121, 81, 81);
+  color: rgb(121, 81, 81) !important;
+}
+
+/* star */
+#star {
+  text-align: center;
+}
+.star {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+
+  margin-left: 0.9em;
+  margin-right: 0.9em;
+  margin-bottom: 1.2em;
+
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.7em solid #fc0;
+  border-left: 0.3em solid transparent;
+
+  /* Controlls the size of the stars. */
+  font-size: 24px;
+}
+.star:before,
+.star:after {
+  content: '';
+
+  display: block;
+  width: 0;
+  height: 0;
+
+  position: absolute;
+  top: 0.6em;
+  left: -1em;
+
+  border-right: 1em solid transparent;
+  border-bottom: 0.7em solid #fc0;
+  border-left: 1em solid transparent;
+
+  transform: rotate(-35deg);
+}
+
+.star:after {
+  transform: rotate(35deg);
+}

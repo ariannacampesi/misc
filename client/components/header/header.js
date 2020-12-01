@@ -4,8 +4,11 @@ import './header.css'
 const Header = () => {
   return (
     <div id="header">
-      <div>cart</div>
-      <div>login</div>
+      <div id="header-message">
+        <div>20% off sitewide! use code</div>
+        <div id="header-message-code">MERRYCHRISTMAS</div>
+        <div>at checkout.</div>
+      </div>
     </div>
   )
 }

@@ -6,20 +6,22 @@ import {logout} from '../../store'
 import './navbar.css'
 import bag from '../../images/shopping-bag.png'
 import Quantity from '../bag/quantity'
+import Header from '../header/header'
 
 const Navbar = ({handleClick, isLoggedIn, user}) => {
   const [active, setActive] = useState('')
 
   return (
     <div>
+      <Header />
       {!isLoggedIn ? (
         <div className="account-details">
           {/* <Link to="/login">login</Link>
           <Link to="/signup">signup</Link> */}
           <Link to="/bag">
             <div id="shopping-bag-icon">
-              <img id="bag" src={bag} />
               <Quantity />
+              <img id="bag" src={bag} />
             </div>
           </Link>
         </div>

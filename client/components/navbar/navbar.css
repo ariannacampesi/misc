@@ -53,12 +53,13 @@ a:hover {
 
 #bag {
   height: 4rem;
+  position: absolute;
 }
 
 #shopping-bag-icon {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 #quantity {
@@ -66,7 +67,6 @@ a:hover {
   flex-direction: column;
   /* justify-content: center; */
   color: white !important;
-  font-size: 0.8rem;
 }
 
 .account-details {
@@ -76,7 +76,6 @@ a:hover {
   align-items: center;
   font-family: 'Lato', sans-serif;
   justify-content: flex-end;
-  height: 4rem;
   color: white !important;
   /* background-color: white;
   width: 101vw;
