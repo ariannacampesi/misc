@@ -40,7 +40,7 @@ class ProductsView extends Component {
                 >
                   <img className="product" src={product.imgUrl} />
                   <div className="product-name">{product.name}</div>
-                  <div className="price">{product.price}</div>
+                  <div className="price">${product.price}</div>
                 </div>
               </Link>
             ))}

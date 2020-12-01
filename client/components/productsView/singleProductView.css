@@ -50,5 +50,8 @@
   align-self: center;
   font-size: 1rem;
   margin-right: 2rem;
+  margin-top: 0.75rem;
   height: 2rem;
+  color: purple;
+  width: 20rem;
 }

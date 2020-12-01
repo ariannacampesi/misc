@@ -85,6 +85,7 @@ class SingleProductView extends Component {
       this.setState({
         quantity: 1
       })
+      setTimeout(() => this.setState({message: ''}), 1500)
     } else {
       console.log('logged in')
     }
@@ -123,10 +124,11 @@ class SingleProductView extends Component {
               >
                 -
               </button>
+              <div id="message">{this.state.message}</div>
             </div>
           </form>
         </div>
-        <div id="message">{this.state.message}</div>
+        {/* <div id="message">{this.state.message}</div> */}
       </div>
     )
   }
