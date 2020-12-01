@@ -163,7 +163,7 @@ async function seed() {
         'https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/9358705_fpx.tif?op_sharpen=1&wid=700&fit=fit,1&$filtersm$&fmt=webp',
       price: 348,
       specs: [{fabrication: '18k gold vermeil/organic man-made pearls'}],
-      quantity: 15,
+      quantity: 4,
       categoryId: 2
     }),
     Product.create({
@@ -191,7 +191,7 @@ async function seed() {
       price: 548,
       specs: [{fabrication: '100% leather', color: 'pink'}],
       categoryId: 2,
-      quantity: 7
+      quantity: 3
     }),
     Product.create({
       name: 'Colorblock Scarf',
@@ -323,7 +323,7 @@ async function seed() {
       imgUrl:
         'https://res.cloudinary.com/ssenseweb/image/upload/b_white%2Cc_lpad%2Cg_center%2Ch_960%2Cw_960/c_scale%2Ch_680/f_auto%2Cdpr_1.0/v572/202236F025018_1.jpg',
       categoryId: 4,
-      quantity: 10,
+      quantity: 3,
       specs: [{}],
       price: 89
     }),
@@ -332,7 +332,7 @@ async function seed() {
       imgUrl:
         'https://cdn.shopify.com/s/files/1/0146/0862/9808/products/20932_1000x.jpg?v=1550557368',
       categoryId: 4,
-      quantity: 5,
+      quantity: 4,
       specs: [{fabrication: 'stainless steel', dimensions: '8"H'}],
       price: 38
     }),

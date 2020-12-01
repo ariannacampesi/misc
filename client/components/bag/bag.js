@@ -19,13 +19,15 @@ class Bag extends Component {
       discount: 0,
       promoMessage: '',
       salesTax: 0.15,
-      shipping: 5.99
+      shipping: 5.99,
+      checkout: false
     }
     this.getStorage = this.getStorage.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleQuantityChange = this.handleQuantityChange.bind(this)
     this.handlePromoSubmit = this.handlePromoSubmit.bind(this)
     this.handlePromoChange = this.handlePromoChange.bind(this)
+    this.handleCheckout = this.handleCheckout.bind(this)
   }
 
   async componentDidMount() {
@@ -128,11 +130,25 @@ class Bag extends Component {
     }
   }
 
+  handleCheckout() {
+    localStorage.clear()
+    this.props.setOrderQuantity(-this.props.quantity)
+    this.setState({checkout: true, localStorage: []})
+  }
+
   render() {
     console.log('this.state in render', this.state)
     console.log('this.props in render', this.props.quantity)
     const storage = this.getStorage()
     console.log('storage', storage)
+
+    if (this.state.checkout === true) {
+      return (
+        <div id="entire-bag">
+          <div id="empty-container">Thank you for shopping with us!</div>
+        </div>
+      )
+    }
 
     if (this.props.quantity === 0) {
       return (
@@ -251,7 +267,11 @@ class Bag extends Component {
               <div id="promo-message">{this.state.promoMessage}</div>
             </div>
             <div>
-              <button id="checkout-button" type="button">
+              <button
+                id="checkout-button"
+                type="button"
+                onClick={this.handleCheckout}
+              >
                 checkout
               </button>
             </div>

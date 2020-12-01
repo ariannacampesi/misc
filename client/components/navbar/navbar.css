@@ -10,6 +10,10 @@
   color: #c7cea1 !important;
 }
 
+#logo a:hover {
+  font-weight: normal;
+}
+
 .links {
   text-align: center;
   font-family: 'Lato', sans-serif;
@@ -52,7 +56,7 @@ a:hover {
 }
 
 #bag {
-  height: 4rem;
+  height: 4.5rem;
   position: absolute;
 }
 
