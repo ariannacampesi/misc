@@ -14,19 +14,15 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const details = req.body
-    console.log('req.body in post', req.body)
+    let details = req.body
     const createdOrder = await Order.create({purchased: true})
-    const createdOrderDetails = await details.forEach(lineItem =>
-      OrderProduct.create({
-        productId: lineItem.id,
-        quantity: lineItem.quantity,
-        orderId: createdOrder.id
-        // imgUrl: lineItem.imgUrl,
-        // name: lineItem.name,
-        // price: lineItem.price,
-      })
-    )
+    details = details.map(detail => ({
+      productId: detail.id,
+      orderId: createdOrder.id,
+      quantity: detail.quantity
+    }))
+    const createdOrderDetails = await OrderProduct.bulkCreate(details)
+    console.log('createdOrderDetails', createdOrderDetails)
     res.json(createdOrderDetails)
   } catch (err) {
     next(err)

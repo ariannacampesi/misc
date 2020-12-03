@@ -3,14 +3,14 @@ import {connect} from 'react-redux'
 import {me} from '../../store/user'
 const localStorage = window.localStorage
 import './bag.css'
-import Quantity from './quantity'
 import {
   setOrderQuantityLocally,
-  getOrderTotalLocally
+  getOrderTotalLocally,
+  createOrderProductOnServer
 } from '../../store/orderProduct'
-import {createOrderOnServer} from '../../store/order'
-import {createOrderProductOnServer} from '../../store/orderProduct'
+// import {createOrderOnServer} from '../../store/order'
 import {fetchPromosFromServer} from '../../store/promo'
+import Confirmation from '../order/confirmation'
 
 class Bag extends Component {
   constructor(props) {
@@ -145,16 +145,12 @@ class Bag extends Component {
 
   render() {
     console.log('this.state in render', this.state)
-    console.log('this.props in render', this.props.quantity)
+    console.log('this.props in render', this.props)
     const storage = this.getStorage()
     console.log('storage', storage)
 
     if (this.state.checkout === true) {
-      return (
-        <div id="entire-bag">
-          <div id="empty-container">Thank you for shopping with us!</div>
-        </div>
-      )
+      return <Confirmation props={this.props.orderDetails} />
     }
 
     if (this.props.quantity === 0) {
@@ -310,7 +306,7 @@ const mapDispatch = dispatch => {
     setOrderQuantity: quantity => dispatch(setOrderQuantityLocally(quantity)),
     getOrderTotal: () => dispatch(getOrderTotalLocally()),
     getPromos: () => dispatch(fetchPromosFromServer()),
-    createOrder: () => dispatch(createOrderOnServer()),
+    // createOrder: () => dispatch(createOrderOnServer()),
     createOrderProduct: details => dispatch(createOrderProductOnServer(details))
   }
 }
