@@ -150,7 +150,17 @@ class Bag extends Component {
     console.log('storage', storage)
 
     if (this.state.checkout === true) {
-      return <Confirmation props={this.props.orderDetails} />
+      return (
+        <Confirmation
+          props={this.props.orderDetails}
+          total={Math.ceil(
+            this.props.total +
+              this.state.salesTax * this.props.total +
+              this.state.shipping -
+              this.state.calculatedDiscount
+          )}
+        />
+      )
     }
 
     if (this.props.quantity === 0) {

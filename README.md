@@ -212,7 +212,7 @@ using Boilermaker's handy deployment script:
     if nothing changed
     _ `git push --force heroku deploy:master`: push your local
     `deploy` branch to the `master` branch on `heroku`
-    _ `git checkout master`: return to your master branch
+    _ `git checkout main`: return to your main branch
     _ `git branch -D deploy`: remove the deploy branch
 
 Now, you should be deployed!

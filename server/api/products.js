@@ -44,3 +44,13 @@ router.get('/singleProduct/:productId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/inOrder', async (req, res, next) => {
+  try {
+    const ids = req.body
+    const foundProducts = await Promise.all(ids.map(id => Product.findByPk(id)))
+    res.json(foundProducts)
+  } catch (err) {
+    next(err)
+  }
+})
