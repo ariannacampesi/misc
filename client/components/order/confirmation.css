@@ -1,0 +1,24 @@
+#order-confirmation {
+  background-color: white;
+  width: 100%;
+}
+
+#confirmation-header {
+  font-family: 'Trispace';
+  font-size: 1rem;
+}
+
+#details {
+  font-family: 'Lato';
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.order-confirmation div {
+  margin: 1rem;
+  text-align: center;
+}
+
+.confirmation-img {
+  height: 10rem;
+}

@@ -8,6 +8,8 @@ import {
   setOrderQuantityLocally,
   getOrderTotalLocally
 } from '../../store/orderProduct'
+import {createOrderOnServer} from '../../store/order'
+import {createOrderProductOnServer} from '../../store/orderProduct'
 import {fetchPromosFromServer} from '../../store/promo'
 
 class Bag extends Component {
@@ -130,7 +132,12 @@ class Bag extends Component {
     }
   }
 
-  handleCheckout() {
+  async handleCheckout() {
+    const orderDetails = this.getStorage().map(
+      lineItem => lineItem[Object.keys(lineItem)]
+    )
+    await this.props.createOrderProduct(orderDetails)
+
     localStorage.clear()
     this.props.setOrderQuantity(-this.props.quantity)
     this.setState({checkout: true, localStorage: []})
@@ -291,7 +298,9 @@ const mapState = state => {
     user: state.user,
     quantity: state.orderProduct.quantity,
     total: state.orderProduct.total,
-    promos: state.promo.promos
+    promos: state.promo.promos,
+    order: state.order.order,
+    orderDetails: state.orderProduct.orderDetails
   }
 }
 
@@ -300,7 +309,9 @@ const mapDispatch = dispatch => {
     getUser: () => dispatch(me()),
     setOrderQuantity: quantity => dispatch(setOrderQuantityLocally(quantity)),
     getOrderTotal: () => dispatch(getOrderTotalLocally()),
-    getPromos: () => dispatch(fetchPromosFromServer())
+    getPromos: () => dispatch(fetchPromosFromServer()),
+    createOrder: () => dispatch(createOrderOnServer()),
+    createOrderProduct: details => dispatch(createOrderProductOnServer(details))
   }
 }
 

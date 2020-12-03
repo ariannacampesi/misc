@@ -11,3 +11,12 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+// router.post('/', async (req, res, next) => {
+//   try {
+//     const createdOrder = await Order.create({purchased: true})
+//     res.json(createdOrder)
+//   } catch (err) {
+//     next(err)
+//   }
+// })

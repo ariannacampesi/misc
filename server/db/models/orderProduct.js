@@ -9,11 +9,6 @@ const OrderProduct = db.define('orderProduct', {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false
-  },
-  completed: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false,
-    default: false
   }
 })
 

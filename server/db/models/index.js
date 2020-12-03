@@ -16,9 +16,18 @@ Category.hasMany(Product)
 
 User.hasMany(Order)
 Order.belongsTo(User)
-Order.hasMany(OrderProduct)
 
-OrderProduct.hasMany(Product)
+// OrderProduct.hasMany(Product)
+
+Order.belongsToMany(Product, {through: 'orderProduct'})
+Product.belongsToMany(Order, {through: 'orderProduct'})
+
+Order.hasMany(OrderProduct)
+OrderProduct.belongsTo(Order)
+
+Product.hasMany(OrderProduct)
+OrderProduct.belongsTo(Product)
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'

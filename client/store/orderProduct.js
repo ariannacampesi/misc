@@ -7,6 +7,7 @@ const GET_ORDER_PRODUCTS = 'GET_PRODUCTS'
 const ADD_TO_ORDER_QUANTITY = 'ADD_TO_ORDER_QUANTITY'
 const SET_ORDER_QUANTITY = 'SET_ORDER_QUANTITY'
 const GET_ORDER_TOTAL = 'GET_ORDER_TOTAL'
+const CREATE_ORDER_PRODUCT = 'CREATE_ORDER_PRODUCT'
 
 //ACTION CREATORS
 const getOrderProducts = products => {
@@ -34,6 +35,13 @@ const getOrderTotal = total => {
   return {
     type: GET_ORDER_TOTAL,
     total
+  }
+}
+
+const createOrderProduct = details => {
+  return {
+    type: CREATE_ORDER_PRODUCT,
+    details
   }
 }
 //THUNK CREATOR
@@ -71,13 +79,24 @@ export const getOrderTotalLocally = () => dispatch => {
   }
 }
 
+export const createOrderProductOnServer = details => async dispatch => {
+  try {
+    console.log('details in store', details)
+    const {data} = await axios.post(`/api/orderProducts`, details)
+    dispatch(createOrderProduct(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 //REDUCER
 export default function(
   state = {
     orderProducts: [],
     quantity: localStorage.length === 0 ? 0 : +getQuantity(),
     isLoading: true,
-    total: 0
+    total: 0,
+    orderDetails: {}
   },
   action
 ) {
@@ -103,6 +122,11 @@ export default function(
       return {
         ...state,
         total: action.total
+      }
+    case CREATE_ORDER_PRODUCT:
+      return {
+        ...state,
+        orderDetails: action.details
       }
     default:
       return state
