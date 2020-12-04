@@ -46,16 +46,18 @@ class ProductsView extends Component {
     } else {
       return (
         <div>
-          <h1 id="section-header">{this.state.category}</h1>
-          <div className="sort">
-            <label>sort by</label>
-            <select name="sortValue" onChange={this.lampHandleSort}>
-              {/* <option value="all">All</option> */}
-              <option value="a-z">name, a-z</option>
-              <option value="z-a">name, z-a</option>
-              <option value="low-to-high">price, low to high</option>
-              <option value="high-to-low">price, high to low</option>
-            </select>
+          <div>
+            <h1 id="section-header">{this.state.category}</h1>
+            <div className="sort">
+              <label>sort by</label>
+              <select name="sortValue" onChange={this.lampHandleSort}>
+                {/* <option value="all">All</option> */}
+                <option value="a-z">name, a-z</option>
+                <option value="z-a">name, z-a</option>
+                <option value="low-to-high">price, low to high</option>
+                <option value="high-to-low">price, high to low</option>
+              </select>
+            </div>
           </div>
           <div className="all-products">
             {this.state.products.map(product => (
