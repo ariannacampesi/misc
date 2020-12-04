@@ -14,7 +14,8 @@ import {
   Beauty,
   ForTheHome,
   ProductsView,
-  SingleProductView
+  SingleProductView,
+  Gifting
 } from './components'
 import {me} from './store'
 

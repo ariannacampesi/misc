@@ -62,7 +62,7 @@ const mapState = state => {
   return {
     isLoading: state.product.isLoading,
     user: state.user,
-    products: state.product.products
+    products: state.product.allProducts
   }
 }
 

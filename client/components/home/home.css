@@ -29,7 +29,7 @@
   margin: 1rem;
   width: 5.2rem;
   text-align: center;
-  color: rgb(52, 94, 52) !important;
+  color: rgb(52, 94, 52);
   font-weight: bold;
 }
 
@@ -45,13 +45,13 @@
   margin: 1rem;
 }
 
-#shop-all {
-  border: thin solid rgb(121, 81, 81);
+.shop-all {
+  border: thin solid rgb(121, 81, 81) !important;
   color: rgb(121, 81, 81) !important;
 }
 
-#shop-all:hover {
-  background-color: rgb(121, 81, 81);
+.shop-all:hover {
+  background-color: rgb(121, 81, 81) !important;
   color: white !important;
 }
 

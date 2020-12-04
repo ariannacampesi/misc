@@ -51,10 +51,14 @@ img.product:hover {
 #section-header {
   font-family: 'Trispace';
   color: black;
-  background-color: #edddd4;
-  margin-left: -1rem;
-  margin-right: -2rem;
-  font-size: 1rem;
+  /* background-color: #edddd4; */
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.sort {
+  font-family: 'Lato';
+  text-align: center;
 }
 
 /* .product-name {

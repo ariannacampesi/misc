@@ -39,7 +39,7 @@ const getProductsInOrder = products => {
 //THUNK CREATOR
 export const fetchProductsFromServer = () => async dispatch => {
   try {
-    const {data} = await axios.get('/api/products/')
+    const {data} = await axios.get('/api/products')
     dispatch(getProducts(data))
   } catch (err) {
     console.error(err)
@@ -75,7 +75,7 @@ export const fetchProductsInOrderFromServer = ids => async dispatch => {
 
 //REDUCER
 export default function(
-  state = {products: [], product: {}, isLoading: true},
+  state = {products: [], allProducts: [], product: {}, isLoading: true},
   action
 ) {
   switch (action.type) {
@@ -83,7 +83,7 @@ export default function(
       return {
         ...state,
         isLoading: false,
-        products: action.products
+        allProducts: action.products
       }
     case GET_PRODUCTS_IN_CATEGORY:
       return {
