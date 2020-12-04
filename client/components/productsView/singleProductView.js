@@ -68,24 +68,34 @@ class SingleProductView extends Component {
         : 0
 
       console.log('lineItem', lineItem)
+      console.log('line item > available', lineItem > available.length)
+      if (lineItem >= +available.length) {
+        lineItem = 0
 
-      //add the new quantity to the existing quantity
-      item.quantity += +lineItem
+        this.setState({
+          message: `all ${
+            this.props.product.quantity
+          } available units are already in your bag. cannot add more units than available`
+        })
+      } else {
+        //add the new quantity to the existing quantity
+        item.quantity += +lineItem
 
-      //set the item in localStorage, passing the JSON object as a string
-      localStorage.setItem(`${item.id}`, JSON.stringify(item))
+        //set the item in localStorage, passing the JSON object as a string
+        localStorage.setItem(`${item.id}`, JSON.stringify(item))
 
-      //add the new quantity to the redux state, so component will update
-      this.props.addToOrderQuantity(this.state.quantity)
+        //add the new quantity to the redux state, so component will update
+        this.props.addToOrderQuantity(this.state.quantity)
 
-      //message to notify user of success and reset
-      this.setState({
-        message: `${this.state.quantity} unit(s) sucessfully added to cart!`
-      })
-      this.setState({
-        quantity: 1
-      })
-      setTimeout(() => this.setState({message: ''}), 1500)
+        //message to notify user of success and reset
+        this.setState({
+          message: `${this.state.quantity} unit(s) sucessfully added to cart!`
+        })
+        this.setState({
+          quantity: 1
+        })
+        setTimeout(() => this.setState({message: ''}), 1500)
+      }
     } else {
       console.log('logged in')
     }
