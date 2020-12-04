@@ -71,7 +71,7 @@ class Bag extends Component {
     this.setState({localStorage: this.getStorage()})
   }
 
-  handleQuantityChange(event) {
+  async handleQuantityChange(event) {
     //extract the key and values from the target
     const {name, value} = event.target
 
@@ -92,13 +92,13 @@ class Bag extends Component {
     //set the item in localStorage
     localStorage.setItem(name, valueObj)
 
-    this.props.setOrderQuantity(diff)
-    this.props.getOrderTotal()
+    await this.props.setOrderQuantity(diff)
+    await this.props.getOrderTotal()
 
     this.setState({
       updated: !this.state.updated,
       localStorage: this.getStorage(),
-      calculatedDiscount: this.state.discount * this.props.total
+      calculatedDiscount: +this.state.discount * this.props.total
     })
   }
 
